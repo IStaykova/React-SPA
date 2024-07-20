@@ -1,16 +1,17 @@
+import { Link } from "react-router-dom";
+
 export default function Header(){
     
     return(
         <>
-  {/* header section starts */}
   <header className="header_section">
     <div className="header_top">
       <div className="container-fluid ">
         <div className="contact_nav">
-          <a href="">
+          <Link to="">
             <i className="fa fa-phone" aria-hidden="true" />
             <span>Call : +01 123455678990</span>
-          </a>
+          </Link>
           <a href="">
             <i className="fa fa-envelope" aria-hidden="true" />
             <span>Email : ins_trans@gmail.com</span>
@@ -42,31 +43,38 @@ export default function Header(){
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav  ">
               <li className="nav-item active">
-                <a className="nav-link" href="index.html">
-                  Home <span className="sr-only">(current)</span>
-                </a>
+                <Link className="nav-link" 
+                   to="/">
+                  Home 
+                  <span className="sr-only"></span>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="service.html">
+                <Link className="nav-link" 
+                   to="/services">
                   Services
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="about.html">
+                <Link className="nav-link" 
+                   to="/about">
                   {" "}
                   About
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="contact.html">
+                <Link className="nav-link" 
+                   to="/contact">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" 
+                   to="/register">
                   {" "}
-                  <i className="fa fa-user" aria-hidden="true" /> Login
-                </a>
+                  <i className="fa fa-user"/>
+                  Register
+                </Link>
               </li>
               <form className="form-inline">
                 <button
@@ -82,104 +90,6 @@ export default function Header(){
       </div>
     </div>
   </header>
-  {/* end header section */}
-  {/* slider section */}
-  <section className="slider_section ">
-    <div className="slider_bg_box">
-      <img src="images/slider-bg.jpg" alt="" />
-    </div>
-    <div id="customCarousel1" className="carousel slide" data-ride="carousel">
-      <div className="carousel-inner">
-        <div className="carousel-item active">
-          <div className="container ">
-            <div className="row">
-              <div className="col-md-7 ">
-                <div className="detail-box">
-                  <h1>
-                    We Provide best <br />
-                    Transport Service
-                  </h1>
-                  <p>
-                  INS TRANS is a young but fast-growing company, which, through its headway-focused policy, has successfully ranked amongst the leaders in logistics.
-                  With its experienced and multilingual team, INS TRANS will plan, store and deliver your goods anywhere in Europe using first-rate trucks.
-                  </p>
-                  <div className="btn-box">
-                    <a href="" className="btn1">
-                      Get A Quote
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="container ">
-            <div className="row">
-              <div className="col-md-7 ">
-                <div className="detail-box">
-                  <h1>
-                    We Provide best <br />
-                    Transport Service
-                  </h1>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Eum magnam, voluptates distinctio, officia architecto
-                    tenetur debitis hic aspernatur libero commodi atque fugit
-                    adipisci, blanditiis quidem dolorum odit voluptas?
-                    Voluptate, eveniet?
-                  </p>
-                  <div className="btn-box">
-                    <a href="" className="btn1">
-                      Get A Quote
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="container ">
-            <div className="row">
-              <div className="col-md-7 ">
-                <div className="detail-box">
-                  <h1>
-                    We Provide best <br />
-                    Transport Service
-                  </h1>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Eum magnam, voluptates distinctio, officia architecto
-                    tenetur debitis hic aspernatur libero commodi atque fugit
-                    adipisci, blanditiis quidem dolorum odit voluptas?
-                    Voluptate, eveniet?
-                  </p>
-                  <div className="btn-box">
-                    <a href="" className="btn1">
-                      Get A Quote
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <ol className="carousel-indicators">
-        <li
-          data-target="#customCarousel1"
-          data-slide-to={0}
-          className="active"
-        />
-        <li data-target="#customCarousel1" data-slide-to={1} />
-        <li data-target="#customCarousel1" data-slide-to={2} />
-      </ol>
-    </div>
-  </section>
-  {/* end slider section */}
-
-
         </>
     )
 }

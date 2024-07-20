@@ -1,4 +1,4 @@
-export default function Truck(){
+export default function ShipmentTrack(){
 
     return (
 
