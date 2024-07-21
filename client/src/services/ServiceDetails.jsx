@@ -24,7 +24,7 @@ export default function ServiceDetails(){
         <div className="col-md-6 ">
           <div className="box ">
             <div className="img-box">
-              {/* <img src={service.img} alt="" /> */}
+              <img src={service.imgURL}/>
             </div>
             <div className="detail-box">
               <h5>{service.title}</h5>

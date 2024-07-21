@@ -3,44 +3,48 @@
         "list": [
             {
                 "_id": "ee9823ab-c3e8-4a14-b998-8c22ec246bd4",
-                "title": "Air Transport"
+                "title": "Air Transport",
+                "imgURL": "https://cdn-icons-png.freepik.com/512/619/619043.png"
             },
             {
                 "_id": "fdf00227-084f-48bc-a450-9242a0963f1v",
-                "title": "Ocean Transport"
+                "title": "Ocean Transport",
+                "imgURL": "https://cdn-icons-png.freepik.com/512/3264/3264103.png"
             },
             {
                 "_id": "8cd30492-3c55-4864-a1a2-7870e1694117",
-                "title": "Trucks Transport"
+                "title": "Trucks Transport",
+                "imgURL": "https://cdn-icons-png.flaticon.com/512/171/171257.png"
             },
             {
                 "_id": "9d776e93-bc6f-408c-9ab8-8aad7a5cffc2",
-                "title": "Train Transport"
+                "title": "Train Transport",
+                "imgURL": "https://cdn-icons-png.freepik.com/512/5626/5626432.png"
             }
         ],
         "details": {
             "ee9823ab-c3e8-4a14-b998-8c22ec246bd4": {
                 "_id": "ee9823ab-c3e8-4a14-b998-8c22ec246bd4",
                 "title": "Air Transport",
-                "img": "images/s1.png",
+                "imgURL": "https://cdn-icons-png.freepik.com/512/619/619043.png",
                 "content": "We will arrange transport of your cargo by air to/from any port, airport, and warehouse in Europe, Asia, Africa, North and South America. Our global network of experienced agents located in more than 100 countries around the world is a guarantee for smooth operations and agile communication."
             },
             "fdf00227-084f-48bc-a450-9242a0963f1v": {
                 "_id": "fdf00227-084f-48bc-a450-9242a0963f1v",
                 "title": "Ocean Transport",
-                "img": "images/s2.png",
+                "imgURL": "https://cdn-icons-png.freepik.com/512/3264/3264103.png",
                 "content": "We offer reliable transport of goods that fit a full 20'/40' sea container incl. temperature controlled, part cargo, oversized as well as project cargo."
             },
             "8cd30492-3c55-4864-a1a2-7870e1694117": {
                 "_id": "8cd30492-3c55-4864-a1a2-7870e1694117",
                 "title": "Trucks Transport",
-                "img": "images/s3.png",
+                "imgURL": "https://cdn-icons-png.flaticon.com/512/171/171257.png",
                 "content": "Our dedicated road forwarding department is key to success. Our long-term market presence, team of specialists in the field of road transport, as well as the experience and knowledge gained from years of practice enable us to offer a complete suite of logistics solutions, tailored to the specific needs of our clients."
             },
             "9d776e93-bc6f-408c-9ab8-8aad7a5cffc2": {
                 "_id": "9d776e93-bc6f-408c-9ab8-8aad7a5cffc2",
                 "title": "Train Transport",
-                "img": "images/s4.png",
+                "imgURL": "https://cdn-icons-png.freepik.com/512/5626/5626432.png",
                 "content": "Rail freight forwarding division efficiently manages both domestic and international rail transportation throughout Europe, the CIS, Turkey, and the Middle East. Our railway department is staffed by experienced professionals who possess extensive expertise in this specialized domain of transportation and logistics. Additionally, the strategic positioning of our operations allows us to provide accurate and reliable ferry services within the Black Sea region."
             }
         }

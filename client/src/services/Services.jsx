@@ -32,7 +32,7 @@ useEffect(() => {
              <div key={service._id} className="col-md-6 ">
              <div className="box ">
                <div className="img-box">
-                 {/* <img src="images/s1.png" alt="" /> */}
+                 <img src={service.imgURL} />
                </div>
                <div className="detail-box">
                  <h5>{service.title}</h5>
