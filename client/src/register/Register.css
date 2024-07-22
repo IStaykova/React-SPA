@@ -1,0 +1,67 @@
+body {
+  background-color: white; /* White background for the entire page */
+  font-family: Arial, sans-serif;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white; /* White background */
+}
+
+.register-form {
+  background-color: #001f3f; /* Dark blue background for the form */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.register-form h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  color: white;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid white;
+  border-radius: 0;
+  background-color: #001f3f; /* Dark blue background */
+  color: white;
+}
+
+.form-group input::placeholder {
+  color: white;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #00aaff; /* Light blue background */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0088cc; /* Slightly darker blue */
+}
+

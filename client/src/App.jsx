@@ -10,6 +10,7 @@ import Info from "./info/Info"
 import Services from "./services/Services"
 import ServiceDetails from './services/ServiceDetails';
 import ShipmentTrack from './shipmentTrack/ShipmentTrack';
+import Register from './register/Register';
 
 function App() {
 
@@ -23,14 +24,14 @@ function App() {
       <Route path='/services/:serviceId' element={<ServiceDetails />} />
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
-      {/* <Route path='/register' element={<Register />} /> */}
+      <Route path='/register' element={<Register />} />
     </Routes>
 
 
     {/* 
     <ShipmentTrack />
     <Client /> */}
-    {/* <Register /> */}
+
     <Info />
     <Footer /> 
     </div>

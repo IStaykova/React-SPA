@@ -2,11 +2,11 @@ export default function Footer(){
 
     return (
         <>
-        <section className="footer_section">
+<section className="footer_section">
   <div className="container">
     <p>
-      © <span id="displayYear" /> All Rights Reserved By
-      <a href="https://html.design/">Free Html Templates</a>
+      © <span style={{ marginRight: '10px'}}> All Rights Reserved By:</span>
+      <a href="https://html.design/">INS TRANS</a>
     </p>
   </div>
 </section>

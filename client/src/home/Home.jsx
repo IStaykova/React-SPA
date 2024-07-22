@@ -4,7 +4,7 @@ export default function Home(){
         <>
   <section className="slider_section ">
     <div className="slider_bg_box">
-      <img src="images/slider-bg.jpg" className="fit-image"/>
+    <img src="images/slider-bg.jpg" className="fit-image"/>
     </div>
     <div id="customCarousel1" className="carousel slide" data-ride="carousel">
       <div className="carousel-inner">
