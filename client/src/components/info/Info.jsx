@@ -72,10 +72,10 @@ export default function Info(){
       </div>
       <div className="col-md-6 col-lg-3 info_col ">
         <h4>Subscribe</h4>
-        <form action="#">
+        {/* <form action="#">
           <input type="text" placeholder="Enter email" />
           <button type="submit">Subscribe</button>
-        </form>
+        </form> */}
       </div>
     </div>
   </div>

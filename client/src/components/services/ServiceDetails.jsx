@@ -37,7 +37,7 @@ export default function ServiceDetails(){
         </div>
   </div>
   <div>
-  <ServiceRequest serviceId={serviceId} transportName={service.title}/>
+  <ServiceRequest {...service}/>
   </div>
 </section>
 </>

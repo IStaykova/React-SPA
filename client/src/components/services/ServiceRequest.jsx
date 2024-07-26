@@ -1,53 +1,48 @@
 import { useEffect, useState } from "react";
+
 import './ServiceRequest.css';
+// import transportRequestAPI from "../../api/transport-request-api";
 
-export default function ServiceRequest({ serviceId, transportName }){
+export default function ServiceRequest(serviceId){
+  // const [curRequest, setNewRequest] = useState('');
 
-    const [request, setNewRequest] = useState({
-        cargo: '',
-        ["loading-place"]: '',
-        ["unloading-place"]: '',
-        date: '',
-        message: '',
-    });
-    const [submit, setSubmit] = useState(false);
-    const [createdRequest, setCreatedRequest] = useState(null);
+  //   const requestSubmitHandler = async (e) => {
+  //     e.preventDefault();
 
-    const requestSubmitHandler = (e) => {
-      e.preventDefault();
-      setSubmit(true);   
-  };
+  //     const newTransportRequest = await transportRequestAPI.create(serviceId, cargo, loading, unloading, date, message);
+  
+      
+  //       setNewRequest(prevState => ({
+  //           ...prevState,
+  //           curRequest: {
+  //             ...prevState.curRequest,
+  //             [newTransportRequest._id]: newTransportRequest,
+  //           }
+  //       }));
 
-  useEffect(() => {
-    if (!submit) return;
+  //   };
+  
+  
 
-    (async () => {
-      const response = await fetch(`http://localhost:3030/jsonstore/transports/requests`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...request,
-          serviceId, // Add serviceId to the request payload
-        }),
-      });
 
-      const result = await response.json();
-      console.log('Request created:', result);
-      setCreatedRequest(result); 
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch(`http://localhost:3030/jsonstore/transports/types/list`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         ...curRequest,
+  //         serviceId, // Add serviceId to the request payload
+  //       }),
+  //     });
 
-      setSubmit(false); 
-    })();
-  }, [submit, request, serviceId]);
-
-    const changeHandler = (e) => {
-        setNewRequest(oldRequests => ({
-            ...oldRequests,
-            [e.target.name] : e.target.value
-        }))
-    };
-
+  //     const result = await response.json();
+  //     console.log('Request created:', result);
+  //     setNewRequest(result); 
+  //   })();
+  // }, []);
 
 return (
  <>
@@ -70,8 +65,8 @@ return (
             type="text" 
             name="cargo"
             id="cargo"
-            value={request.cargo}
-            onChange={changeHandler}
+            value={curRequest.cargo}
+            onChange={setNewRequest}
             />
             </div>
             <div>
@@ -80,7 +75,7 @@ return (
             type="text" 
             name="loading-place"
             id="loading-place"
-            value={request["loading-place"]}
+            value={curRequest["loading-place"]}
             onChange={changeHandler}
             />
             </div>
@@ -90,7 +85,7 @@ return (
             type="text" 
             name="unloading-place"
             id="unloading-place"
-            value={request["unloading-place"]}
+            value={curRequest["unloading-place"]}
             onChange={changeHandler}
              />
             </div>
@@ -101,7 +96,7 @@ return (
             name="date" 
             placeholder="dd-mm-yy"
             id="date"
-            value={request.date}
+            value={curRequest.date}
             onChange={changeHandler}
             />
             </div>
@@ -111,34 +106,35 @@ return (
               type="text"
               name="message"
               id="message"
-              value={request.message}
+              value={curRequest.message}
               onChange={changeHandler}
               className="message-box"   
             />
             </div>
             <div className="btn_box">
-              <button style={{ marginLeft: '150px', marginRight: '150px'}}>SEND</button>
+              <button>SEND</button>
               <button>Edit</button>
               <button>Delete</button>
             </div>
-          </form>
-         
-          {createdRequest && (
-                  <div className="created-request">
-                    <h3>{transportName} Request:</h3>
-                    <p>Type of cargo: {createdRequest.cargo}</p>
-                    <p>Loading place: {createdRequest["loading-place"]}</p>
-                    <p>Unloading place: {createdRequest["unloading-place"]}</p>
-                    <p>Loading date: {createdRequest.date}</p>
-                    <p>Additional information: {createdRequest.message}</p>
-                  </div>
-                )}
+        </form>
+        
+           <div className="created-request">
+        
+              <div key=''> 
+                <h3>{} Request:</h3>
+                <p>Type of cargo: {}</p>
+                <p>Loading place: {}</p>
+                <p>Unloading place: {}</p>
+                <p>Loading date: {}</p>
+                <p>Additional information: {}</p>
+              </div>
+          
+            </div> 
         </div>
       </div>
-
     </div>
   </div>
 </section>
-        </>
+</>
     )
 }

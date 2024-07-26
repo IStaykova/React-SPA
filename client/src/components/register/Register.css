@@ -65,3 +65,7 @@ body {
   background-color: #0088cc; /* Slightly darker blue */
 }
 
+.error {
+  color: rgb(220, 9, 9);
+}
+

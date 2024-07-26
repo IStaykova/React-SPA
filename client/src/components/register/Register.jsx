@@ -1,24 +1,37 @@
-import { useEffect, useState } from "react"
+
+import { useNavigate } from "react-router-dom";
+import { useRegister } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
+import { useState } from "react";
 import './Register.css'
 
+
+const initialValues = {username: '', email: '', password: '', rePassword: ''};
+
 export default function Register(){
+  const [error, setError] = useState('');
+  const register = useRegister();
+  const navigate = useNavigate();
 
-// const [user, setUser] = useState({});
+  const registerHandler = async ({username, email, password, rePassword}) => {
+    if(password !== rePassword){
+      setError('Different passwords!');
+      return;
+    }
+    try{
+      await register(username, email, password, rePassword)
+      navigate('/');
+      }catch(err){
+          setError(err.message);
+      }
+  };
 
-// useEffect(() => {
-//     (async () => {
-//         const response = await fetch('http://localhost:3030/jsonstore/advanced/profiles')
-//     })
-// })
+  const {values, changeHandler, submitHandler} = useForm(initialValues, registerHandler);
 
-// const formSubmitHandler = (e) => {
-//     e.preventDefault();
-
-// }
     return (
     <>
     <div className="register-container">
-    <form className="register-form" onSubmit="">
+    <form className="register-form" onSubmit={submitHandler}>
       <h2>Register</h2>
       <div className="form-group">
         <label htmlFor="username">Username</label>
@@ -26,9 +39,8 @@ export default function Register(){
           type="text"
           id="username"
           name="username"
-        //   value={formData.username}
-        //   onChange={handleChange}
-        //   required
+          value={values.username}
+          onChange={changeHandler}
         />
       </div>
       <div className="form-group">
@@ -37,9 +49,8 @@ export default function Register(){
           type="email"
           id="email"
           name="email"
-        //   value={formData.email}
-        //   onChange={handleChange}
-        //   required
+          value={values.email}
+          onChange={changeHandler}
         />
       </div>
       <div className="form-group">
@@ -48,23 +59,27 @@ export default function Register(){
           type="password"
           id="password"
           name="password"
-        //   value={formData.password}
-        //   onChange={handleChange}
-        //   required
+          value={values.password}
+          onChange={changeHandler}
         />
       </div>
       <div className="form-group">
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-        //   value={formData.confirmPassword}
-        //   onChange={handleChange}
-        //   required
+          id="rePassword"
+          name="rePassword"
+          value={values.rePassword}
+          onChange={changeHandler}
         />
       </div>
-      <button type="submit" className="submit-button">Register</button>
+      {error && (
+         <p>
+          <span className="error">{error}</span>
+        </p>
+      )}
+     
+      <button className="submit-button">Register</button>
     </form>
   </div>
   </>
