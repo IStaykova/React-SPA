@@ -4,23 +4,23 @@ import './ServiceRequest.css';
 // import transportRequestAPI from "../../api/transport-request-api";
 
 export default function ServiceRequest(serviceId){
-  // const [curRequest, setNewRequest] = useState('');
+  const [curRequest, setNewRequest] = useState('');
 
-  //   const requestSubmitHandler = async (e) => {
-  //     e.preventDefault();
+    const requestSubmitHandler = async (e) => {
+      e.preventDefault();
 
-  //     const newTransportRequest = await transportRequestAPI.create(serviceId, cargo, loading, unloading, date, message);
+      // const newTransportRequest = await transportRequestAPI.create(serviceId, cargo, loading, unloading, date, message);
   
       
-  //       setNewRequest(prevState => ({
-  //           ...prevState,
-  //           curRequest: {
-  //             ...prevState.curRequest,
-  //             [newTransportRequest._id]: newTransportRequest,
-  //           }
-  //       }));
+        setNewRequest(prevState => ({
+            ...prevState,
+            curRequest: {
+              ...prevState.curRequest,
+              [newTransportRequest._id]: newTransportRequest,
+            }
+        }));
 
-  //   };
+    };
   
   
 
@@ -76,7 +76,7 @@ return (
             name="loading-place"
             id="loading-place"
             value={curRequest["loading-place"]}
-            onChange={changeHandler}
+            onChange={setNewRequest}
             />
             </div>
             <div>
@@ -86,7 +86,7 @@ return (
             name="unloading-place"
             id="unloading-place"
             value={curRequest["unloading-place"]}
-            onChange={changeHandler}
+            onChange={setNewRequest}
              />
             </div>
             <div>
@@ -97,7 +97,7 @@ return (
             placeholder="dd-mm-yy"
             id="date"
             value={curRequest.date}
-            onChange={changeHandler}
+            onChange={setNewRequest}
             />
             </div>
             <div>
@@ -107,7 +107,7 @@ return (
               name="message"
               id="message"
               value={curRequest.message}
-              onChange={changeHandler}
+              onChange={setNewRequest}
               className="message-box"   
             />
             </div>

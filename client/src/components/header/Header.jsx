@@ -29,6 +29,15 @@ export default function Header(){
       <li className="nav-item">
       <Link className="nav-link" to="/">Home<span className="sr-only"></span></Link>
       </li>
+      <li className="nav-item">
+      <Link className="nav-link" to="/services">Services</Link>
+      </li>
+      <li className="nav-item">
+      <Link className="nav-link" to="/about">About</Link>
+      </li>
+      <li className="nav-item">
+      <Link className="nav-link" to="/contact">Contact Us</Link>
+      </li>
       {isAuthenticated
         ? (
             <li className="nav-item">
@@ -36,25 +45,15 @@ export default function Header(){
             </li>
           )
           :
-           ( <>
-            <li className="nav-item">
-            <Link className="nav-link" to="/register"><i className="fa fa-user"/>Register</Link>
-            </li> 
+          ( <>
             <li className="nav-item">
             <Link className="nav-link" to="/login"><i className="fa fa-user"/>Login</Link>
+            </li> 
+            <li className="nav-item">
+            <Link className="nav-link" to="/register"><i className="fa fa-user"/>Register</Link>
             </li>  
-            </>)
+          </>)
               }
-          <li className="nav-item">
-          <Link className="nav-link" to="/services">Services</Link>
-          </li>
-          <li className="nav-item">
-          <Link className="nav-link" to="/about">About</Link>
-          </li>
-          <li className="nav-item">
-          <Link className="nav-link" to="/contact">Contact Us</Link>
-          </li>
-
               <form className="form-inline">
                 {/* <button
                   className="btn  my-2 my-sm-0 nav_search-btn"
