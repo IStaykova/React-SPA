@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { getAccessToken } from "../../utils/authUtils";
 
 export default function ServiceDetails(){
 
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated,} = useContext(AuthContext);
   const [service, setService] = useState({});
-  const { serviceId } = useParams();
+  const { serviceId} = useParams();
 
   useEffect(() => {
     (async () => {
@@ -32,7 +33,7 @@ return (
             <p>{service.content}</p>
    { isAuthenticated ?
    (  <>
-      <Link to="/services/request" style={{ marginLeft: '40px'}}>Send Request</Link>
+      <Link to="/services/request" {...serviceId} style={{ marginLeft: '40px'}}>Send Request</Link>
       <Link to="/services" style={{ marginLeft: '200px'}}>Back</Link>
       </>)
    :

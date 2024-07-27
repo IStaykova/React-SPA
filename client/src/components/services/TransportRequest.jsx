@@ -1,8 +1,31 @@
 import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+import { useForm } from "../../hooks/useForm";
+import { useCreateTransportRequest } from "../../hooks/useTransports";
+
 import './TransportRequest.css';
 
+const initialValues = {
+        cargo: '', 
+        loading: '', 
+        unloading: '',
+        date: '', 
+        message: '',
+}
 
 export default function TransportRequest(){
+  const { serviceId } = useParams();
+  const createRequest = useCreateTransportRequest();
+ 
+  const { 
+    changeHandler,
+    submitHandler,
+    values,
+  } = useForm(initialValues, ({cargo,loading,unloading,date,message}) => {
+    console.log(values)
+    createRequest(serviceId, cargo,loading,unloading,date,message )
+  });
+  
 
 
 return (
@@ -19,15 +42,15 @@ return (
     <div className="row">
       <div className="col-lg-4 col-md-5 offset-md-1">
         <div className="form_container contact-form">
-        <form onSubmit={requestSubmitHandler}>
+        <form onSubmit={submitHandler}>
             <div>
             <label htmlFor="cargo">Type of cargo:</label>
             <input 
             type="text" 
             name="cargo"
             id="cargo"
-            // value={curRequest.cargo}
-            // onChange={setNewRequest}
+            value={values.cargo}
+            onChange={changeHandler}
             />
             </div>
             <div>
@@ -36,8 +59,8 @@ return (
             type="text" 
             name="loading"
             id="loading"
-            // value={}
-            // onChange={}
+            value={values.loading}
+            onChange={changeHandler}
             />
             </div>
             <div>
@@ -46,8 +69,8 @@ return (
             type="text" 
             name="unloading"
             id="unloading"
-            // value={}
-            // onChange={}
+            value={values.unloading}
+            onChange={changeHandler}
              />
             </div>
             <div>
@@ -57,8 +80,8 @@ return (
             name="date" 
             placeholder="dd-mm-yy"
             id="date"
-            // value={}
-            // onChange={}
+            value={values.date}
+            onChange={changeHandler}
             />
             </div>
             <div>
@@ -67,8 +90,8 @@ return (
               type="text"
               name="message"
               id="message"
-              // value={}
-              // onChange={}
+              value={values.message}
+              onChange={changeHandler}
               className="message-box"   
             />
             </div>
