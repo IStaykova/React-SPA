@@ -1,48 +1,9 @@
 import { useEffect, useState } from "react";
-
-import './ServiceRequest.css';
-// import transportRequestAPI from "../../api/transport-request-api";
-
-export default function ServiceRequest(serviceId){
-  const [curRequest, setNewRequest] = useState('');
-
-    const requestSubmitHandler = async (e) => {
-      e.preventDefault();
-
-      // const newTransportRequest = await transportRequestAPI.create(serviceId, cargo, loading, unloading, date, message);
-  
-      
-        setNewRequest(prevState => ({
-            ...prevState,
-            curRequest: {
-              ...prevState.curRequest,
-              [newTransportRequest._id]: newTransportRequest,
-            }
-        }));
-
-    };
-  
-  
+import './TransportRequest.css';
 
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch(`http://localhost:3030/jsonstore/transports/types/list`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         ...curRequest,
-  //         serviceId, // Add serviceId to the request payload
-  //       }),
-  //     });
+export default function TransportRequest(){
 
-  //     const result = await response.json();
-  //     console.log('Request created:', result);
-  //     setNewRequest(result); 
-  //   })();
-  // }, []);
 
 return (
  <>
@@ -65,28 +26,28 @@ return (
             type="text" 
             name="cargo"
             id="cargo"
-            value={curRequest.cargo}
-            onChange={setNewRequest}
+            // value={curRequest.cargo}
+            // onChange={setNewRequest}
             />
             </div>
             <div>
-            <label htmlFor="loading-place">Loading place:</label>
+            <label htmlFor="loading">Loading place:</label>
             <input 
             type="text" 
-            name="loading-place"
-            id="loading-place"
-            value={curRequest["loading-place"]}
-            onChange={setNewRequest}
+            name="loading"
+            id="loading"
+            // value={}
+            // onChange={}
             />
             </div>
             <div>
-            <label htmlFor="unloading-place">Unloading place:</label>
+            <label htmlFor="unloading">Unloading place:</label>
             <input 
             type="text" 
-            name="unloading-place"
-            id="unloading-place"
-            value={curRequest["unloading-place"]}
-            onChange={setNewRequest}
+            name="unloading"
+            id="unloading"
+            // value={}
+            // onChange={}
              />
             </div>
             <div>
@@ -96,8 +57,8 @@ return (
             name="date" 
             placeholder="dd-mm-yy"
             id="date"
-            value={curRequest.date}
-            onChange={setNewRequest}
+            // value={}
+            // onChange={}
             />
             </div>
             <div>
@@ -106,8 +67,8 @@ return (
               type="text"
               name="message"
               id="message"
-              value={curRequest.message}
-              onChange={setNewRequest}
+              // value={}
+              // onChange={}
               className="message-box"   
             />
             </div>

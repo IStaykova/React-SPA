@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
-import ServiceRequest from "./ServiceRequest";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export default function ServiceDetails(){
@@ -11,7 +10,7 @@ export default function ServiceDetails(){
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`http://localhost:3030/jsonstore/transports/types/details/${serviceId}`);
+      const response = await fetch(`http://localhost:3030/data/details/${serviceId}`);
       const result = await response.json();
       setService(result);
     })();

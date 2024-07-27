@@ -1,6 +1,12 @@
-export default function Logout(){
+import { Navigate } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
-    return (
-        console.log("You are not logged in")
-    )
+export default function Logout(){
+    const { logout } = useAuthContext();
+    logout();
+
+    
+
+    return <Navigate to="/" />
+        
 }

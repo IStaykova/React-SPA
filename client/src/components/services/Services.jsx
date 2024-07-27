@@ -7,7 +7,7 @@ const [services, setServices] = useState([]);
 
 useEffect(() => {
   (async () => {
-    const response = await fetch('http://localhost:3030/jsonstore/transports/types/list');
+    const response = await fetch('http://localhost:3030/data/transports/list');
     const result = await response.json();
 
     setServices(result);
@@ -15,7 +15,7 @@ useEffect(() => {
 }, []);
 
     return (
-        <>
+  <>
   <section className="service_section layout_padding">
   <div className="service_container">
     <div className="container ">
@@ -45,7 +45,6 @@ useEffect(() => {
     </div>
   </div>
 </section>
-
-        </>
+</>
     )
 }

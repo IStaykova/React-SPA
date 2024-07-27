@@ -1,5 +1,6 @@
 import {Routes, Route} from 'react-router-dom';
-import { useState } from 'react';
+import { AuthContextProvider } from './contexts/AuthContext';
+
 
 import About from "./components/about/About"
 import Client from './components/client/Client';
@@ -10,31 +11,17 @@ import Home from './components/home/Home';
 import Info from './components/info/Info';
 import Register from './components/register/Register';
 import ServiceDetails from './components/services/ServiceDetails';
-import ServiceRequest from './components/services/ServiceRequest';
+import TransportRequest from './components/services/TransportRequest';
 import Services from './components/services/Services';
 import ShipmentTrack from './components/shipmentTrack/ShipmentTrack';
 import Login from './components/login/Login';
-import { AuthContext } from './contexts/AuthContext';
 import Logout from './components/logout/Logout';
 
 
 function App() {
-  const [authState, setAuthState] = useState({});
-
-  const changeAuthState = (state) => {
-    setAuthState(state);
-  }
-  const contextData = {
-    userId: authState._id,
-    username: authState.username,
-    email: authState.email,
-    accessToken: authState.accessToken,
-    isAuthenticated: !!authState.email,
-    changeAuthState,
-  };
-
+ 
   return (
-    <AuthContext.Provider value={contextData}>
+    <AuthContextProvider>
 
     <div >
     <Header />
@@ -42,7 +29,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/services' element={<Services />} />
       <Route path='/services/:serviceId' element={<ServiceDetails />} />
-      <Route path='/services/request' element={<ServiceRequest/>} />
+      <Route path='/services/request' element={<TransportRequest/>} />
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/register' element={<Register />} />
@@ -58,7 +45,7 @@ function App() {
     <Info />
     <Footer /> 
     </div>
-    </AuthContext.Provider>
+    </AuthContextProvider>
   
   )
 }
