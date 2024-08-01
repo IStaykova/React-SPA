@@ -1,32 +1,34 @@
-import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useGetOneTransport } from "../../hooks/useTransports";
 import { useForm } from "../../hooks/useForm";
-import { useCreateTransportRequest } from "../../hooks/useTransports";
-
+import { useLocation } from 'react-router-dom';
+import { useCreateTransportRequest, useGetAllTransportRequests } from '../../hooks/useTransportRequest';
 import './TransportRequest.css';
 
 const initialValues = {
-        cargo: '', 
-        loading: '', 
-        unloading: '',
-        date: '', 
-        message: '',
+    cargo: '',
+    loading: '',
+    unloading: '',
+    date: '',
+    message: '',
 }
 
 export default function TransportRequest(){
-  const { serviceId } = useParams();
-  const createRequest = useCreateTransportRequest();
- 
-  const { 
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const transportId = params.get('transportId');
+  const [requests] = useGetAllTransportRequests(transportId);
+  const createTransportRequest = useCreateTransportRequest();
+  // const [transport] = useGetOneTransport(transportId);
+  const {
     changeHandler,
     submitHandler,
     values,
-  } = useForm(initialValues, ({cargo,loading,unloading,date,message}) => {
-    console.log(values)
-    createRequest(serviceId, cargo,loading,unloading,date,message )
-  });
-  
+  } = useForm(initialValues, ({cargo, loading, unloading, date, message}) => {
 
+    console.log(values)
+    console.log(transportId)
+    createTransportRequest(transportId, cargo, loading, unloading, date, message);
+  })
 
 return (
  <>
@@ -103,15 +105,17 @@ return (
         </form>
         
            <div className="created-request">
-        
-              <div key=''> 
-                <h3>{} Request:</h3>
-                <p>Type of cargo: {}</p>
-                <p>Loading place: {}</p>
-                <p>Unloading place: {}</p>
-                <p>Loading date: {}</p>
-                <p>Additional information: {}</p>
-              </div>
+        {requests.map(request => (
+            <div key={request._id}> 
+              <h3> Request:</h3>
+              <p>Type of cargo: {request.cargo}</p>
+              <p>Loading place: {request.loading}</p>
+              <p>Unloading place: {request.unloading}</p>
+              <p>Loading date: {request.date}</p>
+              <p>Additional information: {request.message}</p>
+            </div>
+
+            ))}
           
             </div> 
         </div>
@@ -121,4 +125,4 @@ return (
 </section>
 </>
     )
-}
+  }

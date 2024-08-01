@@ -1,14 +1,16 @@
 import requester from "./requester";
 
-const base_URL = 'http://localhost:3030/data/transport-requests';
+const request_URL = 'http://localhost:3030/data/transport-requests';
 
+export const create = async (transportId, cargo, loading, unloading, date, message) => requester.post(request_URL, { transportId, cargo, loading, unloading, date, message});
 
-export const create = async (serviceId, cargo, loading, unloading, date, message) => requester.post(base_URL, {serviceId, cargo, loading, unloading, date, message});
-
-
-
-// export const getAll = async (serviceId) => {
-//     const result = await requester.get(base_URL);
-//     const allRequests = Object.values(result);
-//     return allRequests;
-// }
+export const getAll = async (transportId) => {
+    const response = await requester.get(request_URL);
+  if (transportId) {
+    return response.filter(request => request.transportId === transportId);
+  }
+  return response;
+}
+   
+    
+ 

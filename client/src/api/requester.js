@@ -15,15 +15,16 @@ async function requester(method, url, data){
     if(method !== "GET"){
         options.method = method;
     }
+    
     if(data){
         options.headers = {
+            ...options.headers,
             'Content-Type': 'application/json'
         };
         options.body = JSON.stringify(data);
     }
 
     const response = await fetch(url, options);
-    
     
     if(response.status === 204){
         return;
