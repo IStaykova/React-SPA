@@ -4,7 +4,7 @@ import { create, getAll } from "../api/transport-request-api";
 export function useCreateTransportRequest(){
    
     const createHandler = (transportId, cargo, loading, unloading, date, message) => {
-        create(transportId, cargo, loading, unloading, date, message);
+        return create(transportId, cargo, loading, unloading, date, message);
     }
     return createHandler;
 }
