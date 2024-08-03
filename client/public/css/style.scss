@@ -455,8 +455,6 @@ a:focus {
         text-transform: uppercase;
       }
 
-      p {}
-
       a {
         color: $primary2;
         font-weight: 600;
@@ -691,8 +689,8 @@ a:focus {
 
 // contact section
 .contact_section {
-  position: relative;
-  padding-bottom: 90px;
+  // position: relative;
+  // padding-bottom: 90px;
 
   .heading_container {
     margin-bottom: 25px;

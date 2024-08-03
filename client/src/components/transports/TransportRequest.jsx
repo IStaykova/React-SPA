@@ -118,28 +118,61 @@ export default function TransportRequest(){
                     <button type="submit">SEND</button>
                   </div>
                 </form>
-          
-                <div className="created-request" display='flex'>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {requests.length > 0 ?
+        (<>
+          <section className="contact_section" >
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-lg-4 col-md-5 offset-md-1">
+                  <div className="heading_container">
+                    <h2>My requests</h2>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-4 col-md-5 offset-md-1">
                   {requests.map(request => (
-                    <div key={request._id}>
-                      <h3>Request:</h3>
-                      <p>Type of cargo: {request.cargo}</p>
-                      <p>Loading place: {request.loading}</p>
-                      <p>Unloading place: {request.unloading}</p>
-                      <p>Loading date: {request.date}</p>
-                      <p>Additional information: {request.message}</p>
+                    <div key={request._id} className="form_container contact-form">
+                      <div>
+                        <p htmlFor="cargo">Type of cargo:{request.cargo}</p>
+                      </div>
+                      <div>
+                        <p htmlFor="loading">Loading place:{request.loading}</p>
+                      </div>
+                      <div>
+                        <p htmlFor="unloading">Unloading place:{request.unloading}</p>
+                      </div>
+                      <div>
+                        <p htmlFor="date">Loading date:{request.date}</p>
+                      </div>
+                      <div>
+                        <p htmlFor="message">Additional information:{request.message}</p>
+                      </div>
                       <div className="btn_box">
                         <button onClick={() => navigate(`/transports/request/${request._id}/edit`)}>Edit</button>
                         <button onClick={() => delHandler(request._id)}>Delete</button>
                       </div>
                     </div>
                   ))}
-            </div> 
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</>
-    )
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+        ) :
+        (
+          <p>No requests created</p>
+        )
+      }
+
+    </>
+  )
   }

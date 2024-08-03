@@ -42,19 +42,10 @@
     margin-top: 20px;
   }
   
-  .created-request {
-    margin-top: 30px;
-    display:inline-flexbox;
-  }
-  
-  .created-request p {
-    margin: 5px 0;
-  }
   
   .message-box {
     height: 100px;
     resize: vertical;
   }
-  
   
   
