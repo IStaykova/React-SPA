@@ -35,6 +35,10 @@ export default function TransportRequest(){
   });
 
    const delHandler = async (requestId) => {
+    const isConfirmed = confirm('Are you sure you want to delete this request?');
+    if(!isConfirmed){
+      return;
+    }
     try {
       await deleteTransportRequest(requestId);
       setRequests(oldRequests => oldRequests.filter(request => request._id !== requestId));
