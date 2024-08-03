@@ -1,5 +1,5 @@
 import { useForm } from "../../hooks/useForm";
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateTransportRequest, useDeleteHandler, useGetAllTransportRequests } from '../../hooks/useTransportRequest';
 import './TransportRequest.css';
 
@@ -18,6 +18,7 @@ export default function TransportRequest(){
   const [requests, setRequests] = useGetAllTransportRequests(transportId);
   const createTransportRequest = useCreateTransportRequest();
   const deleteTransportRequest = useDeleteHandler();
+  const navigate = useNavigate();
  
   const {
     changeHandler,
@@ -124,7 +125,7 @@ export default function TransportRequest(){
                       <p>Loading date: {request.date}</p>
                       <p>Additional information: {request.message}</p>
                       <div className="btn_box">
-                        <button>Edit</button>
+                        <button onClick={() => navigate(`/transports/request/${request._id}/edit`)}>Edit</button>
                         <button onClick={() => delHandler(request._id)}>Delete</button>
                       </div>
                     </div>

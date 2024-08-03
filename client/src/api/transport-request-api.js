@@ -11,8 +11,9 @@ export const getAll = (transportId) => {
     : request_URL;
   return requester.get(url);
 }
+export const getOne = (requestId) => requester.get(`${request_URL}/${requestId}`);
 
 export const remove = (requestId) => requester.del(`${request_URL}/${requestId}`);
    
-    
+export const update = (requestId, requestData) => requester.put(`${request_URL}/${requestId}`, requestData); 
  

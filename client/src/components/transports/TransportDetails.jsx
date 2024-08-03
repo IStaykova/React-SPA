@@ -22,15 +22,15 @@ export default function TransportDetails(){
                   <h1>{transport.title}</h1>
                   <p>{transport.content}</p>
                   { isAuthenticated ?
-   (  <>
-                  <Link to={`/transports/request?transportId=${transportId}`} style={{ marginLeft: '40px' }}>Send Request</Link>
-                  <Link to="/transports" style={{ marginLeft: '200px' }}>Back</Link>
-                  </>)
-   :
-   ( <Link to="/transports" style={{ marginLeft: '200px'}}>Back</Link> 
-    //TODO: Link to Login to send request + message
-   )
-   }       
+              ( <>
+                <Link to={`/transports/request?transportId=${transportId}`} style={{ marginLeft: '40px' }}>Send Request</Link>
+                <Link to="/transports" style={{ marginLeft: '200px' }}>Back</Link>
+              </> )
+               :
+              ( <Link to="/transports" style={{ marginLeft: '200px'}}>Back</Link> 
+                //TODO: Link to Login to send request + message
+              )
+                  }       
                 </div>
               </div>
             </div>

@@ -15,6 +15,7 @@ import Login from './components/login/Login';
 import Logout from './components/logout/Logout';
 import Transports from './components/transports/Transports';
 import TransportDetails from './components/transports/TransportDetails';
+import EditTransportRequest from './components/transports/EditTransportRequest';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Route path='/transports' element={<Transports/>} />
       <Route path='/transports/:transportId' element={<TransportDetails />} />
       <Route path='/transports/request' element={<TransportRequest/>} />
+      <Route path='/transports/request/:requestId/edit' element={<EditTransportRequest />} />
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/register' element={<Register />} />
@@ -37,8 +39,7 @@ function App() {
 
     </Routes>
 
-    {/* 
-    <ShipmentTrack />
+    {/* <ShipmentTrack />
     <Client /> */}
 
     <Info />

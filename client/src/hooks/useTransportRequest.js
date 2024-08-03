@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { create, getAll, remove } from "../api/transport-request-api";
+import { create, getAll, getOne, remove } from "../api/transport-request-api";
 import { useAuthContext } from "../contexts/AuthContext";
 
 export function useCreateTransportRequest(){
@@ -8,6 +8,18 @@ const createHandler = (transportId, cargo, loading, unloading, date, message) =>
     return create(transportId, cargo, loading, unloading, date, message);
 }
 return createHandler;
+}
+
+export function useGetOneTransportRequest(requestId){
+    const [request, setRequest] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            const result = await getOne(requestId);
+            setRequest(result);
+        })();
+    }, [requestId]);
+    return [request, setRequest];
 }
 
 export function useGetAllTransportRequests(transportId){
