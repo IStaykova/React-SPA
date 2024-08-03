@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { create, getAll } from "../api/transport-request-api";
+import { create, getAll, remove } from "../api/transport-request-api";
 import { useAuthContext } from "../contexts/AuthContext";
 
 export function useCreateTransportRequest(){
@@ -22,4 +22,13 @@ export function useGetAllTransportRequests(transportId){
         })();
     }, [transportId, userId]);
     return [requests, setRequests];
+}
+
+export function useDeleteHandler(){
+ 
+    const deleteHandler = (requestId) => {
+        return remove(requestId);
+        
+    }
+ return deleteHandler;
 }

@@ -11,6 +11,8 @@ export const getAll = (transportId) => {
     : request_URL;
   return requester.get(url);
 }
+
+export const remove = (requestId) => requester.del(`${request_URL}/${requestId}`);
    
     
  

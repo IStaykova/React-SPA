@@ -1,6 +1,6 @@
 import { useForm } from "../../hooks/useForm";
 import { useLocation } from 'react-router-dom';
-import { useCreateTransportRequest, useGetAllTransportRequests } from '../../hooks/useTransportRequest';
+import { useCreateTransportRequest, useDeleteHandler, useGetAllTransportRequests } from '../../hooks/useTransportRequest';
 import './TransportRequest.css';
 
 const initialValues = {
@@ -17,6 +17,7 @@ export default function TransportRequest(){
   const transportId = params.get('transportId');
   const [requests, setRequests] = useGetAllTransportRequests(transportId);
   const createTransportRequest = useCreateTransportRequest();
+  const deleteTransportRequest = useDeleteHandler();
  
   const {
     changeHandler,
@@ -27,11 +28,19 @@ export default function TransportRequest(){
       const newRequest = await createTransportRequest(transportId, cargo, loading, unloading, date, message);
       setRequests(oldRequests => [...oldRequests, newRequest]);
       console.log(newRequest)
-    
     } catch(err){
       console.log(err.message)
     }
   });
+
+   const delHandler = async (requestId) => {
+    try {
+      await deleteTransportRequest(requestId);
+      setRequests(oldRequests => oldRequests.filter(request => request._id !== requestId));
+    } catch (err) {
+      console.error('Failed to delete request:', err);
+    }
+   };
 
   return (
     <>
@@ -116,13 +125,11 @@ export default function TransportRequest(){
                       <p>Additional information: {request.message}</p>
                       <div className="btn_box">
                         <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={() => delHandler(request._id)}>Delete</button>
                       </div>
                     </div>
                   ))}
-          
             </div> 
-            
         </div>
       </div>
     </div>
