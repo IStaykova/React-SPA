@@ -21,16 +21,16 @@ export default function TransportDetails(){
                 <div className="detail-box">
                   <h1>{transport.title}</h1>
                   <p>{transport.content}</p>
-                  {/* { isAuthenticated ?
-   (  <> */}
+                  { isAuthenticated ?
+   (  <>
                   <Link to={`/transports/request?transportId=${transportId}`} style={{ marginLeft: '40px' }}>Send Request</Link>
                   <Link to="/transports" style={{ marginLeft: '200px' }}>Back</Link>
-                  {/* </>)
+                  </>)
    :
    ( <Link to="/transports" style={{ marginLeft: '200px'}}>Back</Link> 
     //TODO: Link to Login to send request + message
    )
-   }        */}
+   }       
                 </div>
               </div>
             </div>

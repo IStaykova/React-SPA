@@ -44,6 +44,7 @@
   
   .created-request {
     margin-top: 30px;
+    display:inline-flexbox;
   }
   
   .created-request p {
@@ -54,5 +55,6 @@
     height: 100px;
     resize: vertical;
   }
+  
   
   

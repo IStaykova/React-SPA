@@ -38,4 +38,3 @@ export const useLogout = () => {
     
     return logoutHandler;
 }
-
