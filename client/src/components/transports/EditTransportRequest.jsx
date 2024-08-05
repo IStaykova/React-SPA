@@ -2,6 +2,7 @@ import { useForm } from "../../hooks/useForm"
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetOneTransportRequest } from "../../hooks/useTransportRequest";
 import { update } from "../../api/transport-request-api";
+import { useMemo } from "react";
 
 const initialValues = {
     cargo: '',
@@ -15,11 +16,12 @@ export default function editTransportRequest(){
     const navigate = useNavigate();
     const { requestId } = useParams();
     const [request] = useGetOneTransportRequest(requestId);
+    const initialFormValues = useMemo(() => Object.assign({}, initialValues, request),[request]);
     const { 
         changeHandler,
         submitHandler,
         values,
-        } = useForm(Object.assign(initialValues, request), async (values) => {
+        } = useForm(initialFormValues, async (values) => {
          const updatedRequest = await update(requestId, values);
         navigate('/transports/request');
     });

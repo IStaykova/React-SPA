@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useGetOneTransport } from "../../hooks/useTransports";
 
 export default function TransportDetails(){
-  const { isAuthenticated} = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const { transportId } = useParams();
   const [transport] = useGetOneTransport(transportId);
 

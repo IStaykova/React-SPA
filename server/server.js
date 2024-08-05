@@ -1,3 +1,5 @@
+const { subscribe } = require('diagnostics_channel');
+
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('http'), require('fs'), require('crypto')) :
     typeof define === 'function' && define.amd ? define(['http', 'fs', 'crypto'], factory) :
@@ -1390,6 +1392,9 @@
             },
         },
         "transport-requests": {
+            
+        },
+        subscribers: {
             
         },
     	recipes: {

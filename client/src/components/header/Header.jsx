@@ -29,7 +29,7 @@ export default function Header(){
                     <Link className="nav-link" to="/">Home<span className="sr-only"></span></Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/transports">Our transports</Link>
+                    <Link className="nav-link" to="/transports">Our transport</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/about">About</Link>

@@ -1,5 +1,6 @@
 import {Routes, Route} from 'react-router-dom';
 import { AuthContextProvider } from './contexts/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import About from "./components/about/About"
 import Client from './components/client/Client';
