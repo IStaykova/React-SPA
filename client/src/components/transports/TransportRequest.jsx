@@ -142,6 +142,9 @@ export default function TransportRequest(){
                   {requests.map(request => (
                     <div key={request._id} className="form_container contact-form">
                       <div>
+                        <p htmlFor="track">Tracking Number:{request._id}</p>
+                      </div>
+                      <div>
                         <p htmlFor="cargo">Type of cargo:{request.cargo}</p>
                       </div>
                       <div>

@@ -17,7 +17,7 @@ export function useGetAllSubscribers(){
             try {
             const result = await getAll(email);
             setSubscribers(result);
-            console.log(result)
+            
             } catch (error) {
                 console.log(error, 'Failed to load subscribers');
             }

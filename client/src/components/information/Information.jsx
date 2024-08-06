@@ -8,7 +8,7 @@ import { TriggerButton } from "../../utils/informationUtils";
 
 const initialValues = { email: '' };
 
-export default function Info() {
+export default function Information() {
   const { isAuthenticated } = useAuthContext();
   const [subscribers, setSubscribers] = useGetAllSubscribers();
   const [showModal, setShowModal] = useState(false);
@@ -55,7 +55,7 @@ export default function Info() {
               <div className="info_contact">
                 <h4>Address</h4>
                 <div className="contact_link_box">
-                  <a href="">
+                  <a href="https://maps.app.goo.gl/gSYXaMuPQFiUzdW68">
                     <i className="fa fa-map-marker" aria-hidden="true" />
                     <span>Location</span>
                   </a>
@@ -106,10 +106,6 @@ export default function Info() {
                   <a className="" href="/transports">
                     <img src="images/nav-bullet.png" alt="" />
                     Transport
-                  </a>
-                  <a className="" href="/contact">
-                    <img src="images/nav-bullet.png" alt="" />
-                    Contact Us
                   </a>
                 </div>
               </div>

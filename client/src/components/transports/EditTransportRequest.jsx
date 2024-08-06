@@ -16,7 +16,7 @@ export default function editTransportRequest(){
     const navigate = useNavigate();
     const { requestId } = useParams();
     const [request] = useGetOneTransportRequest(requestId);
-    const initialFormValues = useMemo(() => Object.assign({}, initialValues, request),[request]);
+    const initialFormValues = useMemo(() => Object.assign({}, initialValues, request),[request])
     const { 
         changeHandler,
         submitHandler,

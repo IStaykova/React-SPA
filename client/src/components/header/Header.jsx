@@ -10,7 +10,7 @@ export default function Header(){
         <div className="header_bottom">
           <div className="container-fluid">
             <nav className="navbar navbar-expand-lg custom_nav-container ">
-              <a className="navbar-brand" href="https://maps.app.goo.gl/gSYXaMuPQFiUzdW68">
+              <a className="navbar-brand" href="">
                 <span>INS TRANS</span>
               </a>
               <button
@@ -34,14 +34,16 @@ export default function Header(){
                   <li className="nav-item">
                     <Link className="nav-link" to="/about">About</Link>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/contact">Contact Us</Link>
-                  </li>
                   {isAuthenticated
                     ? (
+                      <>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/logout"><i className="fa fa-user" />Logout</Link>
+                      <Link className="nav-link" to="/shipment">Shipment</Link>
                       </li>
+                      <li className="nav-item">
+                      <Link className="nav-link" to="/logout"><i className="fa fa-user" />Logout</Link>
+                      </li>
+                      </> 
                     )
                     :
                     (<>
