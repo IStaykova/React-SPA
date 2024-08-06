@@ -4,36 +4,36 @@ import Modal from "react-bootstrap/Modal";
 import { useCreateSubscriber, useGetAllSubscribers } from "../../hooks/useSubscribers";
 import { useForm } from "../../hooks/useForm";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { TriggerButton } from "../../utils/informationUtils";
 
 const initialValues = { email: '' };
 
-export default function Info(){
+export default function Info() {
   const { isAuthenticated } = useAuthContext();
   const [subscribers, setSubscribers] = useGetAllSubscribers();
   const [showModal, setShowModal] = useState(false);
   const [emailError, setEmailError] = useState('');
   const createSubscriber = useCreateSubscriber();
-  
+
   const pattern = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
   const {
     changeHandler,
     submitHandler,
     values
-  } = useForm(initialValues, async ({email}) => { 
+  } = useForm(initialValues, async ({ email }) => {
 
-    if(!email.match(pattern)){
+    if (!email.match(pattern)) {
       setEmailError('Email is not valid');
       return;
     }
+    setEmailError('');
+
     const existingSubscriber = subscribers.find(subscriber => subscriber.email === values.email);
-   
-    if(existingSubscriber){
+    if (existingSubscriber) {
       setEmailError("Email already exists");
       return;
     }
-
-    setEmailError('');
 
     try {
       const newSubscriber = await createSubscriber(email);
@@ -118,7 +118,7 @@ export default function Info(){
               <h4>Subscribe</h4>
               <form onSubmit={submitHandler}>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   placeholder="Enter email"
@@ -126,11 +126,13 @@ export default function Info(){
                   onChange={changeHandler}
                   disabled={!isAuthenticated}
                 />
-                <button type="submit"
-                className={!isAuthenticated ? "disabled-button" : ""} // TO FIX to SHOW MESSAGE when not logged in
-                disabled={!isAuthenticated}
-                
-                >Subscribe</button>
+                 <TriggerButton tooltipText="You need to log in to subscribe!" >
+                  <button 
+                    type="submit"
+                    disabled={!isAuthenticated}
+                  >Subscribe
+                  </button>
+                </TriggerButton>
                 {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
               </form>
             </div>

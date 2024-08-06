@@ -1,6 +1,0 @@
-.disabled-button {
-    background-color: #ccc;  /* Light gray background */
-    cursor: not-allowed;    /* Show "not allowed" cursor */
-    pointer-events: none;   /* Disable click events */
-    opacity: 0.6;           /* Make button slightly transparent */
-}

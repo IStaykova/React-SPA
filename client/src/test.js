@@ -124,3 +124,12 @@
 //     submitHandler
 // };
 // };
+
+
+
+    // if (existingSubscriber) {
+    //   setEmailError("Email already exists");
+    //   return;
+    // }
+
+    // setEmailError('');
