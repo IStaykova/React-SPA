@@ -24,8 +24,6 @@ export default function Information() {
   } = useForm(initialValues, async ({ email }) => {
     let errorMessage = '';
 
-    console.log('Subscribers:', subscribers);
-    console.log('Email:', email);
     if (!email) {
       errorMessage = 'Field should not be empty';
     }
@@ -35,7 +33,6 @@ export default function Information() {
       const existingSubscriber = subscribers.find(subscriber => subscriber.email === email);
         if (existingSubscriber) {
          errorMessage = "Email already exists";
-         return
       }
     }
     setValuesError(errorMessage);
