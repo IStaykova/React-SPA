@@ -27,8 +27,8 @@ export default function TransportDetails(){
                 <Link to="/transports" style={{ marginLeft: '200px' }}>Back</Link>
               </> )
                :
-              ( <Link to="/transports" style={{ marginLeft: '200px'}}>Back</Link> 
-                //TODO: Link to Login to send request + message
+              ( 
+              <Link to="/transports" style={{ marginLeft: '200px'}}>Back</Link> 
               )
                   }       
                 </div>

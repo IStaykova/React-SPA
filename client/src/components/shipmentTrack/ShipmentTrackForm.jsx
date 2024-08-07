@@ -1,3 +1,4 @@
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
@@ -12,29 +13,24 @@ const initialValues = {
   requestId: ''
 };
 
-export default function ShipmentTrack(){
+export default function ShipmentTrackForm({show, handleClose}){
   const { requestId } = useParams();
-  const [show, setShow] = useState(false);
   const [request, setRequest] = useGetOneTransportRequest(requestId);
   const [error, setError] = useState(null);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const fetchRequestData = async ({requestId}) => {
-  handleShow();
+  const fetchRequestData = async () => {
   
   try {
-    const result = await getOne(requestId);
+    const result = await getOne(values.requestId);
     setRequest(result);
     setError(null);
-    handleShow();
   } catch (error) {
-    setError('No such Request!')
-    handleClose();
-    setRequest(null);
+    if (error.response && error.response.status === 404) {
+        setError('No such Request!');
+      } else {
+        setError('An error occurred.');
+      }
   }
-
   if (!values.requestId) {
     setError('Tracking number is required.');
     return;
@@ -48,44 +44,22 @@ const {
 
   const isButtonDisabled = !values.requestId;
 
-
   return (
     <>
-      <section className="track_section layout_padding">
-        <div className="track_bg_box">
-          <img src="images/track-bg.jpg" alt="" />
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="heading_container">
-                <h2>Track Your Shipment</h2>
-              </div>
-              <p>
-                Using Your tracking number you can check the current state of your shipment.
-                The unique number you can find in the Request information message.
-                We take responsibility to ensure that every order we receive is taken care of.
-                For further questions, check Links below.
-              </p>
-              <form onSubmit={submitHandler}>
-                <input
-                  type="text"
-                  placeholder="Enter Your Tracking Number"
-                  name="requestId"
-                  id="requestId"
-                  value={values.requestId}
-                  onChange={changeHandler}
-                />
-                <button 
-                  type="submit"
-                  disabled={isButtonDisabled}
-                  onClick={() => fetchRequestData()}>Track</button>
-              </form>
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-            </div>
-          </div>
-        </div>
-      </section>
+        <form onSubmit={submitHandler}>
+        <input
+            type="text"
+            placeholder="Enter Your Tracking Number"
+            name="requestId"
+            id="requestId"
+            value={values.requestId}
+            onChange={changeHandler}
+        />
+        <button 
+            type="submit"
+            disabled={isButtonDisabled}>Track</button>
+        </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {request && (
       <Modal

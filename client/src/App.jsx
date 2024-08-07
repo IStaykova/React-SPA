@@ -18,7 +18,6 @@ import Information from './components/information/Information';
 
 
 function App() {
-
   return (
     <AuthContextProvider>
 
@@ -41,7 +40,6 @@ function App() {
       </div>
       
     </AuthContextProvider>
-
   )
 }
 export default App

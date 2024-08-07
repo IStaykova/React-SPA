@@ -1,7 +1,9 @@
-import { useForm } from "../../hooks/useForm";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateTransportRequest, useDeleteHandler, useGetAllTransportRequests } from '../../hooks/useTransportRequest';
 import './TransportRequest.css';
+
+import { useForm } from "../../hooks/useForm";
+import { useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useCreateTransportRequest, useDeleteHandler, useGetAllTransportRequests } from '../../hooks/useTransportRequest';
 
 const initialValues = {
     cargo: '',
@@ -16,21 +18,51 @@ export default function TransportRequest(){
   const params = new URLSearchParams(location.search);
   const transportId = params.get('transportId');
   const [requests, setRequests] = useGetAllTransportRequests(transportId);
+  const [valuesError, setValuesError] = useState({});
   const createTransportRequest = useCreateTransportRequest();
   const deleteTransportRequest = useDeleteHandler();
   const navigate = useNavigate();
  
+  const pattern = /^\d{2}-\d{2}-\d{2}$/g;
+
   const {
     changeHandler,
     submitHandler,
     values,
   } = useForm(initialValues, async ({cargo, loading, unloading, date, message}) => {
+  
+  const newErrors = {};
+
+    if (!cargo) {
+      newErrors.cargo = ('Field should not be empty');
+    }
+    if (!loading) {
+      newErrors.loading = ('Field should not be empty');
+    }
+    if (!unloading) {
+      newErrors.unloading = ('Field should not be empty');
+    }
+    if (!date) {
+      newErrors.date = ('Field should not be empty');
+    }
+    else if (!date.match(pattern)){
+      newErrors.date = ('Date is not in the correct format');
+    }
+    if (!message) {
+      newErrors.message = ('Field should not be empty');
+    }
+    setValuesError(newErrors);
+
+    if(Object.keys(newErrors).length !== 0){
+      return;
+    }
+    
     try{
       const newRequest = await createTransportRequest(transportId, cargo, loading, unloading, date, message);
       setRequests(oldRequests => [...oldRequests, newRequest]);
       console.log(newRequest)
-    } catch(err){
-      console.log(err.message)
+    } catch(error){
+      console.log(error, 'Failed to create request') 
     }
   });
 
@@ -43,7 +75,7 @@ export default function TransportRequest(){
       await deleteTransportRequest(requestId);
       setRequests(oldRequests => oldRequests.filter(request => request._id !== requestId));
     } catch (err) {
-      console.error('Failed to delete request:', err);
+      console.error('Failed to delete request', err);
     }
    };
 
@@ -70,8 +102,9 @@ export default function TransportRequest(){
                       id="cargo"
                       value={values.cargo}
                       onChange={changeHandler}
-                    />
+                    /> 
                   </div>
+                  {valuesError.cargo && <p style={{ color: 'red' }}>{valuesError.cargo}</p>}
                   <div>
                     <label htmlFor="loading">Loading place:</label>
                     <input
@@ -82,6 +115,7 @@ export default function TransportRequest(){
                       onChange={changeHandler}
                     />
                   </div>
+                  {valuesError.loading && <p style={{ color: 'red' }}>{valuesError.loading}</p>}
                   <div>
                     <label htmlFor="unloading">Unloading place:</label>
                     <input
@@ -92,6 +126,7 @@ export default function TransportRequest(){
                       onChange={changeHandler}
                     />
                   </div>
+                  {valuesError.unloading && <p style={{ color: 'red' }}>{valuesError.unloading}</p>}
                   <div>
                     <label htmlFor="date">Loading date:</label>
                     <input
@@ -103,6 +138,7 @@ export default function TransportRequest(){
                       onChange={changeHandler}
                     />
                   </div>
+                  {valuesError.date && <p style={{ color: 'red' }}>{valuesError.date}</p>}
                   <div>
                     <label htmlFor="message">Additional information:</label>
                     <input
@@ -114,13 +150,11 @@ export default function TransportRequest(){
                       className="message-box"
                     />
                   </div>
+                  {valuesError.message && <p style={{ color: 'red' }}>{valuesError.message}</p>}
                   <div className="btn_box">
                     <button type="submit">SEND</button>
                   </div>
                 </form>
-
-
-
               </div>
             </div>
           </div>
@@ -172,10 +206,9 @@ export default function TransportRequest(){
         </>
         ) :
         (
-          <p>No requests created</p>
+          <p style={{fontSize: '20px'}}>No requests created</p>
         )
       }
-
     </>
   )
   }

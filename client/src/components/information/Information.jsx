@@ -1,6 +1,7 @@
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+
+import { useState } from "react";
 import { useCreateSubscriber, useGetAllSubscribers } from "../../hooks/useSubscribers";
 import { useForm } from "../../hooks/useForm";
 import { useAuthContext } from "../../contexts/AuthContext";
@@ -12,9 +13,8 @@ export default function Information() {
   const { isAuthenticated } = useAuthContext();
   const [subscribers, setSubscribers] = useGetAllSubscribers();
   const [showModal, setShowModal] = useState(false);
-  const [emailError, setEmailError] = useState('');
+  const [valuesError, setValuesError] = useState('');
   const createSubscriber = useCreateSubscriber();
-
   const pattern = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
   const {
@@ -22,16 +22,25 @@ export default function Information() {
     submitHandler,
     values
   } = useForm(initialValues, async ({ email }) => {
+    let errorMessage = '';
 
-    if (!email.match(pattern)) {
-      setEmailError('Email is not valid');
-      return;
+    console.log('Subscribers:', subscribers);
+    console.log('Email:', email);
+    if (!email) {
+      errorMessage = 'Field should not be empty';
     }
-    setEmailError('');
+    else if (!email.match(pattern)){
+      errorMessage = 'Invalid email';
+    } else {
+      const existingSubscriber = subscribers.find(subscriber => subscriber.email === email);
+        if (existingSubscriber) {
+         errorMessage = "Email already exists";
+         return
+      }
+    }
+    setValuesError(errorMessage);
 
-    const existingSubscriber = subscribers.find(subscriber => subscriber.email === values.email);
-    if (existingSubscriber) {
-      setEmailError("Email already exists");
+    if(errorMessage){
       return;
     }
 
@@ -40,7 +49,7 @@ export default function Information() {
       setSubscribers(oldSubscribers => [...oldSubscribers, newSubscriber]);
       setShowModal(true);
     } catch (error) {
-      console.log(error, 'Failed to subscribe');
+      console.log('Failed to subscribe', error);
     }
   });
 
@@ -129,7 +138,7 @@ export default function Information() {
                   >Subscribe
                   </button>
                 </TriggerButton>
-                {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+                {valuesError && <p style={{ color: 'red' }}>{valuesError}</p>}
               </form>
             </div>
           </div>

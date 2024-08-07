@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { useAuthContext} from "../../contexts/AuthContext";
 
-export default function Header(){
+export default function Header() {
   const { isAuthenticated } = useAuthContext();
-    
+
   return (
     <>
       <header className="header_section">
         <div className="header_bottom">
           <div className="container-fluid">
             <nav className="navbar navbar-expand-lg custom_nav-container ">
-              <a className="navbar-brand" href="">
+              <a className="navbar-brand">
                 <span>INS TRANS</span>
               </a>
               <button
@@ -37,32 +37,26 @@ export default function Header(){
                   {isAuthenticated
                     ? (
                       <>
-                      <li className="nav-item">
-                      <Link className="nav-link" to="/shipment">Shipment</Link>
-                      </li>
-                      <li className="nav-item">
-                      <Link className="nav-link" to="/logout"><i className="fa fa-user" />Logout</Link>
-                      </li>
-                      </> 
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/shipment">Shipment</Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/logout"><i className="fa fa-user" />Logout</Link>
+                        </li>
+                      </>
                     )
                     :
-                    (<>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/login"><i className="fa fa-user" />Login</Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/register"><i className="fa fa-user" />Register</Link>
-                      </li>
-                    </>)
+                    (
+                      <>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/login"><i className="fa fa-user" />Login</Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/register"><i className="fa fa-user" />Register</Link>
+                        </li>
+                      </>
+                    )
                   }
-                  <form className="form-inline">
-                    {/* <button
-                  className="btn  my-2 my-sm-0 nav_search-btn"
-                  type="submit"
-                >
-                  <i className="fa fa-search" aria-hidden="true" />
-                </button> */}
-                  </form>
                 </ul>
               </div>
             </nav>

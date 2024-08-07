@@ -21,7 +21,7 @@ export const getAll = async () => {
         return subscribers;
     } catch (error) {
         console.log(error, "Failed to fetch subscribers");
-     throw error;
+        throw error;
     }
  
 }

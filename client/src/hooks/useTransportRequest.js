@@ -3,8 +3,7 @@ import { create, getAll, getOne, remove } from "../api/transport-request-api";
 import { useAuthContext } from "../contexts/AuthContext";
 
 export function useCreateTransportRequest(){
-   
-const createHandler = (transportId, cargo, loading, unloading, date, message) => {
+    const createHandler = (transportId, cargo, loading, unloading, date, message) => {
     return create(transportId, cargo, loading, unloading, date, message);
 }
 return createHandler;
@@ -15,8 +14,12 @@ export function useGetOneTransportRequest(requestId){
 
     useEffect(() => {
         (async () => {
-            const result = await getOne(requestId);
-            setRequest(result);
+            try {
+                const result = await getOne(requestId);
+                setRequest(result);
+            } catch (error) {
+                console.log('Cannot fetch current transport request', error)
+            }
         })();
     }, [requestId]);
     return [request, setRequest];
@@ -28,9 +31,14 @@ export function useGetAllTransportRequests(transportId){
 
     useEffect(() => {
         (async () => {
-            const result = await getAll(transportId);
-            const curUserRequests = result.filter(request => request._ownerId === userId);
-            setRequests(curUserRequests);
+            try {
+                const result = await getAll(transportId);
+                const curUserRequests = result.filter(request => request._ownerId === userId);
+                setRequests(curUserRequests);
+            } catch (error) {
+                console.log('Cannot fetch all transport requests', error)
+            }
+            
         })();
     }, [transportId, userId]);
     return [requests, setRequests];
@@ -39,8 +47,7 @@ export function useGetAllTransportRequests(transportId){
 export function useDeleteHandler(){
  
     const deleteHandler = (requestId) => {
-        return remove(requestId);
-        
+        return remove(requestId); 
     }
  return deleteHandler;
 }

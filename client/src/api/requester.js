@@ -2,7 +2,7 @@ import { getAccessToken } from "../utils/authUtils";
 
 async function requester(method, url, data){
     const options = {};
-    const accessToken = getAccessToken();
+    const accessToken  = getAccessToken();
 
     if(accessToken){
         options.headers= {
@@ -22,20 +22,22 @@ async function requester(method, url, data){
         };
         options.body = JSON.stringify(data);
     }
-
-    const response = await fetch(url, options);
+    try {
+        const response = await fetch(url, options);
     
-    if(response.status === 204){
-        return;
+        if(response.status === 204){
+            return;
+        }
+        const result = await response.json();
+        if(!response.ok){
+            throw result;
+        }
+        return result;
+
+    } catch (error) {
+        console.error("API request failed:", error);
+        throw error;
     }
-
-    const result = await response.json();
-
-    if(!response.ok){
-        throw result;
-    }
-    return result;
-
 };
 
 export const get = requester.bind(null, "GET");

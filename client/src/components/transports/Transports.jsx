@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useGetAllTransports } from "../../hooks/useTransports";
 
-export default function Transports(){
+export default function Transports() {
   const [transports] = useGetAllTransports();
-
+ 
   return (
     <>
       <section className="service_section layout_padding">
@@ -14,7 +14,12 @@ export default function Transports(){
                 Our <span>Services</span>
               </h2>
               <p>
-                We offer services in three directions: international road transport, including our own fleet of over 1600 trucks and auto forwarding services covering all Europe; rail freight forwarding and sea and air freight forwarding, providing transportation to all parts of the world. Currently, the company is actively working with over 70 countries (40 of them are in Europe) and it is constantly expanding its global coverage.
+                We offer services in three directions: international road transport,
+                including our own fleet of over 1600 trucks and auto forwarding services
+                covering all Europe. Rail, sea and air freight forwarding, providing
+                transportation to all parts of the world. Currently, the company is
+                actively working with over 70 countries (40 of them are in Europe) and
+                it is constantly expanding its global coverage.
               </p>
             </div>
             <div className="row">
